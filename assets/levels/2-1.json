@@ -1,0 +1,26 @@
+{
+    "structure": {
+        "brick":{
+            "type":"spriteSheet",
+            "url":"/assets/tileSet.png",
+            "height":16,
+            "width":16,
+            "sheetX":0,
+            "sheetY":1,
+            "yStart": 12,
+            "yEnd": 14,
+            "xStart": 0,
+            "xEnd": 20
+        },
+        "sky":{
+            "type":"pixel",
+            "color":"#9290ff",
+            "height":16,
+            "width":16,
+            "yStart": 0,
+            "yEnd": 12,
+            "xStart": 0,
+            "xEnd": 20
+        }
+    }
+}
