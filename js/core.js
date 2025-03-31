@@ -4,6 +4,7 @@ import Player from "./classes/Player.js";
 import {loadJSON} from "./functions/Loaders.js";
 import Level from "./classes/Level.js";
 import Timer from "./classes/Timer.js";
+import Camera from "./classes/Camera.js";
 const canvas = document.getElementById("game-port");
 canvas.width = 256;
 canvas.height = 240;
@@ -33,12 +34,13 @@ Promise.all(resources).then(loadedResources => {
 });
 Window.tileWidth = canvas.width / 16;
 let timer = new Timer();
-
+Window.timer = timer;
+Window.camera = new Camera;
 timer.update = function update(){
     Window.ctx.drawImage(Window.level.buffer.canvas, 0, 0);
     //Window.level.render(Window.ctx);
     //Window.level.sprites.get("mario").sprites.get("mario").outputSprite(Window.ctx, "mario", posx, posy);
     Window.level.entities.get("mario").render("mario");
+    //Window.camera.moveRight(1);
     //console.log(Window.level.sprites);//.outputSprite(Window.level, "idle", posx, posy);
-    
 }
