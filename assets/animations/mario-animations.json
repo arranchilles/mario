@@ -1,6 +1,6 @@
 {
     "moveRight":{
-        "spriteDuration": 0.3,
+        "AnimationLength": 1,
         "sprites":[
             {
                 "posX":211,

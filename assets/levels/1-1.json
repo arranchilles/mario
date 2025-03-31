@@ -26,7 +26,8 @@
         "mario":{
             "type":"spriteSheet",
             "url":"/assets/sprites/smb_mario_sheet.png",
-            "spriteType":"player",
+            "animationsheet": "mario-animations.json",
+            "spriteType":"entity",
             "height":16,
             "width":16,
             "sheetX":13,

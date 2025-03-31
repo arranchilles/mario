@@ -26,12 +26,13 @@ export default class Level{
             switch(spriteType){
                     case "spriteSheet":
                         console.log( spriteValues);
-                        if(spriteValues.spriteType === "player"){
+                        if(spriteValues.spriteType === "entity"){
                             let character =  new this.spriteSheet(this.resources.get(spriteValues.url), spriteValues.width , spriteValues.height);
                             character.defineSprite(canvasSprite, spriteValues.sheetX, spriteValues.sheetY);
                             //character.outputSprite(context, canvasSprite, spriteValues.posX, spriteValues.posY)
-                            let player = new Player(canvasSprite, spriteValues.posX, spriteValues.posY);
+                            let player = new Player(canvasSprite, spriteValues.posX, spriteValues.posY, spriteValues.animationsheet);
                             player.sprites.set(canvasSprite, character);
+
                             this.entities.set(canvasSprite, player);
                             break;
                         }
