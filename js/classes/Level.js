@@ -8,11 +8,12 @@ export default class Level{
         if(typeof levelPlan !== "object"){
             this.level = JSON.parse(levelPlan); 
         }
-        this.level =levelPlan;
+        this.level = levelPlan;
         this.pixel = Pixel;
         this.spriteSheet = SpriteSheet;
         this.backgrounds = new Map();
         this.entities = new Map();
+        this.tiles = new Map();
         this.resources = new Map();
         this.buffer = this.createBackgroundBuffer();
 
@@ -93,8 +94,8 @@ export default class Level{
     }
     createBackgroundBuffer(){
         let buffer = document.createElement("canvas");
-        buffer.width = 256;
-        buffer.height = 240;
+        buffer.width = this.level.dimensions.xEnd * 16;
+        buffer.height = this.level.dimensions.yEnd * 16;
         return buffer.getContext("2d");
     }
 }

@@ -57,7 +57,7 @@ export default class SpriteSheet{
         console.log(sprite, xStart, xEnd, yStart, yEnd, "bellend");
         for(let x = xStart; x < xEnd; x++){
             for(let y = yStart; y < yEnd; y++){
-                this.outputSpriteAtWidthApart(context, sprite,x,  y);
+                this.outputSpriteAtWidthApart(context, sprite, x,  y);
             } 
         }
     }
