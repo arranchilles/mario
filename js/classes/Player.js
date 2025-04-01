@@ -22,18 +22,26 @@ export default class Player extends Entity{
         this.sprites.get(this.name).outputSprite(Window.ctx, sprite, this.posX, this.posY);//shortcut function
     }
     moveRight(){
+        let xLimit  = Window.level.buffer.canvas.width;
+        if(this.entity.posX > xLimit - 16 ){
+            return;
+        }
         this.entity.posX +=3;
        // this.entity.camera.moveRight(3);
        console.log(this.entity.posX);
-        if( this.entity.posX >= 85 &&  this.entity.posX <= (Window.level.level.dimensions.xEnd * 16 - 170)){
+        if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
             this.entity.camera.moveRight(3);
         }
         this.entity.render(this.entity);
         console.log("righasdgsdl;fjasdl;j");
     }
     moveLeft(){
+        let xLimit = Window.level.buffer.canvas.width;
+        if(this.entity.posX < 0 ){
+            return;
+        }
         this.entity.posX -=3;
-        if( this.entity.posX >= 85 &&  this.entity.posX <= (Window.level.level.dimensions.xEnd * 16 - 170)){
+        if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
             this.entity.camera.moveLeft(3);
         }
         this.entity.render(this.entity);
