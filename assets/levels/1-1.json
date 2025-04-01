@@ -1,5 +1,20 @@
 {
+    "dimensions":{
+        "xEnd":40,
+        "yEnd":15
+    },
     "structure": {
+        "sky":{
+            "type":"pixel",
+            "layer": "background",
+            "color":"#9290ff",
+            "height":16,
+            "width":16,
+            "yStart": 0,
+            "yEnd": 13,
+            "xStart": 0,
+            "xEnd": 40
+        },
         "brick":{
             "type":"spriteSheet",
             "url":"/assets/sprites/tileSet.png",
@@ -11,17 +26,20 @@
             "yStart": 13,
             "yEnd": 15,
             "xStart": 0,
-            "xEnd": 20
+            "xEnd": 40
         },
-        "sky":{
-            "type":"pixel",
-            "color":"#9290ff",
+        "brick1":{
+            "type":"spriteSheet",
+            "url":"/assets/sprites/tileSet.png",
+            "spriteType":"tile",
             "height":16,
             "width":16,
-            "yStart": 0,
-            "yEnd": 13,
-            "xStart": 0,
-            "xEnd": 20
+            "sheetX":0,
+            "sheetY":1,
+            "yStart": 11,
+            "yEnd": 12,
+            "xStart": 9,
+            "xEnd": 10
         },
         "mario":{
             "type":"spriteSheet",
