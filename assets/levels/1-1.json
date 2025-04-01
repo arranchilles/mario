@@ -42,7 +42,7 @@
             "xEnd": 10
         },
         "mario":{
-            "type":"spriteSheet",
+            "type":"entity",
             "url":"/assets/sprites/smb_mario_sheet.png",
             "animationsheet": "mario-animations.json",
             "spriteType":"entity",

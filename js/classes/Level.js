@@ -16,7 +16,6 @@ export default class Level{
         this.tiles = new Map();
         this.resources = new Map();
         this.buffer = this.createBackgroundBuffer();
-
     }
     render(context){
         for(let canvasSprite in  this.level.structure){
@@ -27,21 +26,28 @@ export default class Level{
             switch(spriteType){
                     case "spriteSheet":
                         console.log( spriteValues);
-                        if(spriteValues.spriteType === "entity"){
+                        /*if(spriteValues.spriteType === "player"){
                             let character =  new this.spriteSheet(this.resources.get(spriteValues.url), spriteValues.width , spriteValues.height);
                             character.defineSprite(canvasSprite, spriteValues.sheetX, spriteValues.sheetY);
                             //character.outputSprite(context, canvasSprite, spriteValues.posX, spriteValues.posY)
-                            let player = new Player(canvasSprite, spriteValues.posX, spriteValues.posY, spriteValues.animationsheet);
+                            let player = new Player(canvasSprite, spriteValues.posX, spriteValues.posY);
                             player.sprites.set(canvasSprite, character);
-
                             this.entities.set(canvasSprite, player);
                             break;
-                        }
+                        }*/
                         let levelSprite = new this.spriteSheet(this.resources.get(spriteValues.url), spriteValues.width , spriteValues.height);
                         levelSprite.defineSpriteTile(canvasSprite, spriteValues.sheetX, spriteValues.sheetY);
                         //console.log(context);
                         levelSprite.outputMultipleSprites(context, canvasSprite, spriteValues.xStart, spriteValues.xEnd, spriteValues.yStart, spriteValues.yEnd);
                         this.backgrounds.set(canvasSprite ,levelSprite);
+                        break;
+                    case "entity":
+                            let character =  new this.spriteSheet(this.resources.get(spriteValues.url), spriteValues.width , spriteValues.height);
+                            character.defineSprite(canvasSprite, spriteValues.sheetX, spriteValues.sheetY);
+                            //character.outputSprite(context, canvasSprite, spriteValues.posX, spriteValues.posY)
+                            let player = new Player(canvasSprite, spriteValues.posX, spriteValues.posY);
+                            player.sprites.set(canvasSprite, character);
+                            this.entities.set(canvasSprite, player);
                         break;
                     case "pixel": 
                         let levelPixels = new this.pixel();
@@ -64,7 +70,7 @@ export default class Level{
             
             // Check if the current item is a sprite sheet
             switch(spriteValues.type){
-                case "spriteSheet":
+                case "spriteSheet", "entity":
                     console.log(spriteValues.url);
                     if(this.resources.get(spriteValues.url)){
                         continue;
