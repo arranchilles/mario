@@ -2,8 +2,8 @@ import Camera from "./Camera.js";
 import Control from "./Controls.js";
 import Entity from "./Entity.js";
 export default class Player extends Entity{
-    constructor(name, posX, posY){
-        super(name, posX, posY);
+    constructor(name, posX, posY, spriteSheet){
+        super(name, posX, posY, spriteSheet);
        this.controls = new Control(this);
        this.controls.moveRight = this.moveRight;
        this.controls.moveLeft = this.moveLeft;
@@ -13,9 +13,9 @@ export default class Player extends Entity{
     announce(){
         console.log("Player is active", this);
     }
-    render(sprite){
+    /*render(sprite){
         this.sprites.get(this.name).outputSprite(Window.ctx, sprite, this.posX, this.posY);//shortcut function
-    }
+    }*/
     moveRight(){
         let xLimit  = Window.level.buffer.canvas.width;
         if(this.entity.posX > xLimit - 16 ){

@@ -40,7 +40,10 @@ timer.update = function update(){
     Window.ctx.drawImage(Window.level.buffer.canvas, 0, 0);
     //Window.level.render(Window.ctx);
     //Window.level.sprites.get("mario").sprites.get("mario").outputSprite(Window.ctx, "mario", posx, posy);
-    Window.level.entities.get("mario").render("mario");
+    //Window.level.entities.get("mario").render("mario");
+    Window.level.entities.forEach(entity => {
+        entity.update();
+    });
     //Window.camera.moveRight(1);
     //console.log(Window.level.sprites);//.outputSprite(Window.level, "idle", posx, posy);
 }

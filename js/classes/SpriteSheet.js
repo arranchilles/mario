@@ -30,8 +30,8 @@ export default class SpriteSheet{
         buffer.height = this.height;
         buffer.getContext("2d").drawImage(
              this.image,
-             startposx * this.width,
-             startposy * this.height,
+             startposx, /* this.width,*/
+             startposy, /* * this.height,*/
              this.width,
              this.height,
              0,

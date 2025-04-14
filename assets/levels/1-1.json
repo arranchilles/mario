@@ -16,9 +16,8 @@
             "xEnd": 40
         },
         "brick":{
-            "type":"spriteSheet",
+            "type":"tile",
             "url":"/assets/sprites/tileSet.png",
-            "spriteType":"tile",
             "height":16,
             "width":16,
             "sheetX":0,
@@ -29,9 +28,8 @@
             "xEnd": 40
         },
         "brick1":{
-            "type":"spriteSheet",
+            "type":"tile",
             "url":"/assets/sprites/tileSet.png",
-            "spriteType":"tile",
             "height":16,
             "width":16,
             "sheetX":0,
@@ -45,10 +43,9 @@
             "type":"entity",
             "url":"/assets/sprites/smb_mario_sheet.png",
             "animationsheet": "mario-animations.json",
-            "spriteType":"entity",
             "height":16,
-            "width":16,
-            "sheetX":13,
+            "width":13,
+            "sheetX":181,
             "sheetY":0,
             "posX": 13,
             "posY": 190
