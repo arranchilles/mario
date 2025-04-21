@@ -27,6 +27,10 @@ export default class Player extends Entity{
         if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
             this.entity.camera.moveRight(3);
         }
+        if(this.entity.animation != this.entity.moveRight){
+            console.log(this.entity.moveRight);
+            this.entity.currentAnimation = this.entity.animations.moveRight;
+        }
         this.entity.render(this.entity);
         console.log("righasdgsdl;fjasdl;j");
     }
@@ -36,6 +40,9 @@ export default class Player extends Entity{
             return;
         }
         this.entity.posX -=3;
+        if(this.entity.animation != this.entity.moveLeft){
+            this.entity.currentAnimation =this.entity.animations.moveLeft;
+        }
         if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
             this.entity.camera.moveLeft(3);
         }

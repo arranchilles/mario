@@ -6,7 +6,7 @@ export default class Timer{
         this.updateProxy = (time ) =>{ //update /gameloop created by core.js
             accumulatedTime += (time - lastTime) / 1000;
             while(accumulatedTime > timePerFrame){
-                this.update(timePerFrame);
+                this.update(timePerFrame, accumulatedTime);
                 accumulatedTime -= timePerFrame;
             }
             this.lastTime = time;

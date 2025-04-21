@@ -43,7 +43,6 @@ export default class SpriteSheet{
     }
     outputSprite(context, sprite, posx, posy){
         sprite = this.tiles.get(sprite);
-        console.log(posx, posy);
         context.drawImage(sprite, posx, posy);
     }
 

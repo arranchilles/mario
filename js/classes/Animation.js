@@ -1,10 +1,6 @@
 import {loadJSON} from "../functions/Loaders.js";
 export default class Animation{
 
-    ElapsedTime;
-
-    sprites;
-
     entity;
 
     spriteIteration;
@@ -18,6 +14,11 @@ export default class Animation{
     constructor(entity, name){
         this.entity = entity;
         this.name = name;
+        this.spriteIteration = 0;
+       // throw console.log(this.entity.animationData);
+        this.frameTime = this.entity.animationData[name].frameTime;
+        this.frames = this.entity.animationData[name].sprites.length;
+        this.ElapsedTime = 0;
        // this.entity.sprite.set(name);
     }
 
@@ -30,10 +31,13 @@ export default class Animation{
 
     update(deltaTime){
         this.ElapsedTime += deltaTime;
+        console.log(`frametime ${this.frameTime}`, `ElapsedTime ${this.ElapsedTime}`);
         if(this.ElapsedTime >= this.frameTime){
             this.spriteIteration = (this.spriteIteration + 1) % this.frames;
+            this.ElapsedTime = 0;
         }
-        this.entity.sprite = this.entity.sprites.get(this.name + this.spriteIteration)
+        this.entity.sprite = this.name + this.spriteIteration
+        console.log( this.entity.sprite);
     }
 
 } 

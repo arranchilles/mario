@@ -1,6 +1,7 @@
 {
    "moveRight" : { 
         "animationLength": 1,
+        "frameTime": 0.1,
         "sprites": [
             {
                 "posX": 241,
@@ -24,6 +25,7 @@
     },
     "moveLeft": { 
         "name": "moveLeft",
+        "frameTime": 0.1,
         "animationLength": 1,
         "sprites": [
             {

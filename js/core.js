@@ -27,6 +27,7 @@ Promise.all(resources).then(loadedResources => {
     console.log("fone");
     Window.level = level;
     //Window.level.sprites.set("player", new Player(50, 50));
+    Window.level.entities.get
     timer.start();
 })
 .catch(error => {
@@ -36,14 +37,14 @@ Window.tileWidth = canvas.width / 16;
 let timer = new Timer();
 Window.timer = timer;
 Window.camera = new Camera;
-timer.update = function update(){
+timer.update = function update(timePerFrame, accumulatedTime){
     Window.ctx.drawImage(Window.level.buffer.canvas, 0, 0);
     //Window.level.render(Window.ctx);
     //Window.level.sprites.get("mario").sprites.get("mario").outputSprite(Window.ctx, "mario", posx, posy);
     //Window.level.entities.get("mario").render("mario");
-    Window.level.entities.forEach(entity => {
-        entity.update();
-    });
+    Window.level.entities.forEach((entity) => {
+        entity.update(accumulatedTime);
+    }, accumulatedTime);
     //Window.camera.moveRight(1);
     //console.log(Window.level.sprites);//.outputSprite(Window.level, "idle", posx, posy);
 }

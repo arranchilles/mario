@@ -5,6 +5,10 @@ export default class Entity{
 
     sprite;
 
+    currentAnimation;
+
+    animations
+
     constructor(name, posX, posY, spriteSheet){
         this.name = name;
         this.posX = posX;
@@ -14,7 +18,8 @@ export default class Entity{
         this.spriteSheet = spriteSheet;
         this.sprite = this.name;
         //this.imageRef = "/assests/sprites/player-sprites.png";
-       // this.animations = new Animations();
+        //this.animations = new Animations();
+        this.animations = {};
       // this.controls = new Control(this);
     }
     announce(){
@@ -36,12 +41,16 @@ export default class Entity{
             this.animationData[animationName].sprites.forEach((animation, index) => {
                 this.spriteSheet.defineSprite(animationName + index, animation.posX, animation.posY);
             })
-            this[animationName]  = new Animation(this, animationName);
+            this.animations[animationName] = new Animation(this, animationName);
+            console.log(this.animations);
         }
         this.sprites = this.spriteSheet.tiles;
     }
-    update(){
+    update(deltaTime){
+        if(this.currentAnimation){
+            this.currentAnimation.update(deltaTime);
+        }
         this.render();
     }
 
-}
+} 
