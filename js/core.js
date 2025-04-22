@@ -1,10 +1,9 @@
-import SpriteSheet from "./classes/SpriteSheet.js";
-import Pixel from "./classes/Pixel.js";
-import Player from "./classes/Player.js";
 import {loadJSON} from "./functions/Loaders.js";
 import Level from "./classes/Level.js";
 import Timer from "./classes/Timer.js";
 import Camera from "./classes/Camera.js";
+import config from "./config.js";
+Window.config = config;
 const canvas = document.getElementById("game-port");
 canvas.width = 256;
 canvas.height = 240;
