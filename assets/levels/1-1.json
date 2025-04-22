@@ -43,11 +43,19 @@
             "type":"entity",
             "url":"/assets/sprites/smb_mario_sheet.png",
             "animationsheet": "mario-animations.json",
+            "idleSprites":{
+                "left":{
+                    "posX": 180,
+                    "posY": 0
+                },
+                "right":{
+                    "posX":210,
+                    "posY": 0
+                }
+            },
             "height":16,
             "width":13,
-            "sheetX":181,
-            "sheetY":0,
-            "posX": 13,
+            "posX": 20,
             "posY": 190
         }
     }

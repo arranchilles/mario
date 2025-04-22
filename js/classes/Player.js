@@ -23,16 +23,19 @@ export default class Player extends Entity{
         }
         this.entity.posX +=3;
        // this.entity.camera.moveRight(3);
-       console.log(this.entity.posX);
+        if(Window.config.debug.player){
+            console.log(this.entity.posX);
+        }
         if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
             this.entity.camera.moveRight(3);
         }
         if(this.entity.animation != this.entity.moveRight){
-            console.log(this.entity.moveRight);
+            if(Window.config.debug.player){
+                console.log(this.entity.moveRight);
+            }
             this.entity.currentAnimation = this.entity.animations.moveRight;
         }
-        this.entity.render(this.entity);
-        console.log("righasdgsdl;fjasdl;j");
+        this.entity.direction = "Right";
     }
     moveLeft(){
         let xLimit = Window.level.buffer.canvas.width;
@@ -46,8 +49,7 @@ export default class Player extends Entity{
         if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
             this.entity.camera.moveLeft(3);
         }
-        this.entity.render(this.entity);
-        console.log("righasdgsdl;fjasdl;j");
+        this.entity.direction = "Left";
     }
 
 

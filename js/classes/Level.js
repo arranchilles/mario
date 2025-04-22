@@ -43,8 +43,10 @@ export default class Level{
                             }else{
                                 entity = new Entity(canvasSprite, spriteValues.posX, spriteValues.posY, spriteSheet);
                             }
-                            entity.spriteSheet.defineSprite(canvasSprite, spriteValues.sheetX, spriteValues.sheetY);
-                            //entity.sprites.set(canvasSprite, character);
+                            for(let idleSprite in spriteValues.idleSprites){
+                                let direction = idleSprite[0].toUpperCase() + idleSprite.slice(1, idleSprite.length);
+                                entity.spriteSheet.defineSprite(`idle${direction}`, spriteValues.idleSprites[idleSprite].posX, spriteValues.idleSprites[idleSprite].posY);
+                            }
                             this.entities.set(canvasSprite, entity);
                         break;
                     case "pixel": 

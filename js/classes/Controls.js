@@ -1,16 +1,18 @@
 export default class Control {
     constructor(entity){
         let canvas = document.querySelector("body #game-port");
-        this.controlsManager = this.controlsManager.bind(this);
-        canvas.addEventListener("keydown", this.controlsManager);
+        this.keyDownControlsManager = this.keyDownControlsManager.bind(this);
+        this.keyUpControlsManager = this.keyUpControlsManager.bind(this);
+        canvas.addEventListener("keydown", this.keyDownControlsManager);
+        canvas.addEventListener("keyup", this.keyUpControlsManager);
         this.entity = entity;
-        
-        
     }
 
-    controlsManager(event){
+    keyDownControlsManager(event){
         let key = event.key;
-        console.log(event, key);
+        if(Window.config.debug.controls){
+            console.log(event, key);
+        }
         switch(key){
             case "ArrowUp":
                 this.jump();
@@ -22,7 +24,6 @@ export default class Control {
                 this.moveLeft();
             break;
             case "ArrowRight":
-                console.log(this);
                 this.moveRight();
             break;
             default:
@@ -30,13 +31,32 @@ export default class Control {
             break;
         }
     }
+    keyUpControlsManager(event){
+        let key = event.key;
+        if(Window.config.debug.controls){
+            console.log(event, key);
+        }
+        switch(key){
+            case "ArrowUp":
+                if(event.type === "keydown"){
+                    throw Error("COmplete desctructions!");
+                }
+                this.jump();
+            break;
+            default:
+                this.entity.resetSprite();
+            break;
+        }
+    }
     moveRight(){
         this.entity.posX +=5;
         this.entity.render(this.entity)
+        this.entity.direction = "Right";
     }
     moveLeft(){
         //console.log("left movement");
         this.entity.posX -=5;
         this.entity.render(this.entity)
+        this.entity.direction = "Left";
     }
 }

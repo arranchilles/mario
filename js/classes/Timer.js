@@ -11,9 +11,11 @@ export default class Timer{
             }
             this.lastTime = time;
             lastTime = time;
-            console.log(time);
-            if(time > 10000){
-                throw new Error("Cut out at 10 seconds");
+            if(Window.config.debug.clock){
+                console.log(time);
+                if(time > 10000){
+                    throw new Error("Cut out at 10 seconds");
+                }
             }
             this.enqueue();
         }

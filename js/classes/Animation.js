@@ -31,13 +31,17 @@ export default class Animation{
 
     update(deltaTime){
         this.ElapsedTime += deltaTime;
-        console.log(`frametime ${this.frameTime}`, `ElapsedTime ${this.ElapsedTime}`);
+        if(Window.config.debug.animation){
+            console.log(`frametime ${this.frameTime}`, `ElapsedTime ${this.ElapsedTime}`);
+        }
         if(this.ElapsedTime >= this.frameTime){
             this.spriteIteration = (this.spriteIteration + 1) % this.frames;
             this.ElapsedTime = 0;
         }
         this.entity.sprite = this.name + this.spriteIteration
-        console.log( this.entity.sprite);
+        if(Window.config.debug.animation){
+            console.log( this.entity.sprite);
+        }
     }
 
 } 

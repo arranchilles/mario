@@ -41,6 +41,23 @@ export default class SpriteSheet{
         );
         this.tiles.set(name, buffer);
     }
+    defineVariedDimensionsSprite(name, startposx, startposy, width, height){
+        const buffer = document.createElement("canvas");
+        buffer.width = width;
+        buffer.height = height;
+        buffer.getContext("2d").drawImage(
+             this.image,
+             startposx, /* this.width,*/
+             startposy, /* * this.height,*/
+             width,
+             height,
+             0,
+             0,
+             width,
+             height
+        );
+        this.tiles.set(name, buffer);
+    }
     outputSprite(context, sprite, posx, posy){
         sprite = this.tiles.get(sprite);
         context.drawImage(sprite, posx, posy);
@@ -53,7 +70,6 @@ export default class SpriteSheet{
         context.drawImage(sprite, posx * this.width, posy * this.height);
     }
     outputMultipleSprites(context, sprite, xStart, xEnd, yStart, yEnd){
-        console.log(sprite, xStart, xEnd, yStart, yEnd, "bellend");
         for(let x = xStart; x < xEnd; x++){
             for(let y = yStart; y < yEnd; y++){
                 this.outputSpriteAtWidthApart(context, sprite, x,  y);

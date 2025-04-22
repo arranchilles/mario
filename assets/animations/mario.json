@@ -1,7 +1,7 @@
 {
    "moveRight" : { 
         "animationLength": 1,
-        "frameTime": 0.1,
+        "frameTime": 0.2,
         "sprites": [
             {
                 "posX": 241,
@@ -10,22 +10,22 @@
                 "height": 15
             },
             {
-                "posX": 241,
+                "posX": 272,
                 "posY": 0,
                 "width": 13,
                 "height": 16
             },
             {
-                "posX": 272,
+                "posX": 300,
                 "posY": 0,
-                "width": 13,
+                "width": 18,
                 "height": 16
             }
         ]
     },
     "moveLeft": { 
         "name": "moveLeft",
-        "frameTime": 0.1,
+        "frameTime": 0.2,
         "animationLength": 1,
         "sprites": [
             {

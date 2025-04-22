@@ -16,9 +16,8 @@ export default class Entity{
         this.sprites = new Map();
         this.loadAnimationData(name);
         this.spriteSheet = spriteSheet;
-        this.sprite = this.name;
-        //this.imageRef = "/assests/sprites/player-sprites.png";
-        //this.animations = new Animations();
+        this.sprite = "idleRight";
+        this.direction = "right";
         this.animations = {};
       // this.controls = new Control(this);
     }
@@ -38,8 +37,8 @@ export default class Entity{
     }
     createAnimationSprites(){
         for( let animationName in this.animationData){
-            this.animationData[animationName].sprites.forEach((animation, index) => {
-                this.spriteSheet.defineSprite(animationName + index, animation.posX, animation.posY);
+            this.animationData[animationName].sprites.forEach((animationSprite, index) => {
+                this.spriteSheet.defineVariedDimensionsSprite(animationName + index, animationSprite.posX, animationSprite.posY, animationSprite.width, animationSprite.height);
             })
             this.animations[animationName] = new Animation(this, animationName);
             console.log(this.animations);
@@ -51,6 +50,10 @@ export default class Entity{
             this.currentAnimation.update(deltaTime);
         }
         this.render();
+    }
+    resetSprite(){
+        this.sprite = `idle${this.direction}`;
+        this.currentAnimation = null;
     }
 
 } 
