@@ -6,14 +6,23 @@ export default class Camera{
     }
     moveRight(xdiff){
         this.posX += xdiff;
+        xdiff = Math.floor(xdiff);
         //this.ctx.save();
         this.ctx.translate(-xdiff, 0);
         //this.ctx.restore();
     }
     moveLeft(xdiff){
         this.posX -= xdiff;
+        xdiff = Math.floor(xdiff);
        // this.ctx.save();
         this.ctx.translate(xdiff, 0);
+        //this.ctx.restore();
+    }
+    move(xdiff){ // when derrived from velocity,
+        this.posX += xdiff;
+        //this.ctx.save();
+        xdiff = Math.floor(xdiff);
+        this.ctx.translate(-xdiff, 0);
         //this.ctx.restore();
     }
     panTo(endX, endY, time){

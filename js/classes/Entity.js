@@ -19,13 +19,15 @@ export default class Entity{
         this.sprite = "idleRight";
         this.direction = "right";
         this.animations = {};
+        this.xVelocity = 0;
+        this.yVelocity = 0;
       // this.controls = new Control(this);
     }
     announce(){
         console.log("Player is active", this);
     }
     render(){
-       this.spriteSheet.outputSprite(Window.ctx, this.sprite, this.posX, this.posY);//shortcut function
+       this.spriteSheet.outputSprite(Window.ctx, this.sprite, Math.floor(this.posX), Math.floor(this.posY));//shortcut function
     }
     loadAnimationData(filename){
         const baseRoute = "/assets/animations/"
@@ -46,6 +48,7 @@ export default class Entity{
         this.sprites = this.spriteSheet.tiles;
     }
     update(deltaTime){
+        this.updatePosition(deltaTime);
         if(this.currentAnimation){
             this.currentAnimation.update(deltaTime);
         }
@@ -55,5 +58,4 @@ export default class Entity{
         this.sprite = `idle${this.direction}`;
         this.currentAnimation = null;
     }
-
 } 

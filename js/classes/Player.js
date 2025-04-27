@@ -9,6 +9,8 @@ export default class Player extends Entity{
        this.controls.moveLeft = this.moveLeft;
        this.camera = new Camera;
        this.name = name;
+       this.maxXVelocity = 32;
+       this.acceleration = 1;
     }
     announce(){
         console.log("Player is active", this);
@@ -16,41 +18,99 @@ export default class Player extends Entity{
     /*render(sprite){
         this.sprites.get(this.name).outputSprite(Window.ctx, sprite, this.posX, this.posY);//shortcut function
     }*/
-    moveRight(){
+    updateCameraPosition(deltaTime){
         let xLimit  = Window.level.buffer.canvas.width;
-        if(this.entity.posX > xLimit - 16 ){
-            return;
-        }
-        this.entity.posX +=3;
-       // this.entity.camera.moveRight(3);
-        if(Window.config.debug.player){
-            console.log(this.entity.posX);
-        }
-        if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
-            this.entity.camera.moveRight(3);
-        }
-        if(this.entity.animation != this.entity.moveRight){
-            if(Window.config.debug.player){
-                console.log(this.entity.moveRight);
+        let distance = this.xVelocity * deltaTime;
+        if(this.xVelocity > 0){
+            if(this.posX > xLimit - 16 ){
+                return;
             }
-            this.entity.currentAnimation = this.entity.animations.moveRight;
+            //this.posX += this.acceleration * deltaTime;
+        // this.camera.moveRight(3);
+            if(Window.config.debug.player){
+                console.log(this.posX);
+            }
+            if( this.posX >= 85 &&  this.posX <= (xLimit * 16 - 170)){
+                this.camera.move(distance);
+                console.log(distance, "distance camera changed");
+            }
+            if(this.animation != this.moveRight){
+                if(Window.config.debug.player){
+                    console.log(this.moveRight);
+                }
+                this.currentAnimation = this.animations.moveRight;
+            }
+            this.direction = "Right";
         }
-        this.entity.direction = "Right";
+        if(this.xVelocity < 0){
+            if(this.posX < 0 ){
+                return;
+            }
+            if(this.animation != this.moveLeft){
+                this.currentAnimation =this.animations.moveLeft;
+            }
+            if( this.posX >= 85 &&  this.posX <= (xLimit * 16 - 170)){
+                this.camera.move(distance);
+            }
+            this.direction = "Left";
+        }
     }
-    moveLeft(){
-        let xLimit = Window.level.buffer.canvas.width;
-        if(this.entity.posX < 0 ){
-            return;
+    update(deltaTime){
+        this.updatePosition(deltaTime);
+        this.updateCameraPosition(deltaTime);
+        if(this.currentAnimation){
+            this.currentAnimation.update(deltaTime);
         }
-        this.entity.posX -=3;
-        if(this.entity.animation != this.entity.moveLeft){
-            this.entity.currentAnimation =this.entity.animations.moveLeft;
-        }
-        if( this.entity.posX >= 85 &&  this.entity.posX <= (xLimit * 16 - 170)){
-            this.entity.camera.moveLeft(3);
-        }
-        this.entity.direction = "Left";
+        this.render();
     }
+    moveYAxis(){
+        this.updateVelocity("y");
+        this.posY += this.yVelocity;
+    }
+    changePositon(deltaTime, dimension, increase=true){
+        this.updateVelocity(dimension, increase);
+        this.posX += this.xVelocity * deltaTime;
+        console.log(this.xVelocity * deltaTime, "distance pos changed")
 
+    }
+    updatePosition(deltaTime){
+        let inputs = this.controls.activeButtons;
+        //console.log(inputs);
+        if(inputs.ArrowRight){
+            this.changePositon(deltaTime, "x");
+        }
+        if(inputs.ArrowLeft){
+            this.changePositon(deltaTime, "x", false);
+        }
+        if(!inputs.ArrowLeft && !inputs.ArrowRight){
+            this.slowToStanding(deltaTime);
+        }
+    }
+    updateVelocity(dimension, increase=true){
+        let maxXVelotcityVarName = "max"+dimension.toUpperCase()+"Velocity";
+      //  console.log(maxXVelotcityVarName,  this[dimension+"Velocity"],  this[maxXVelotcityVarName]);
+        if(increase){
+            this[dimension+"Velocity"] += this.acceleration;
+            if(this[dimension+"Velocity"] > this[maxXVelotcityVarName]){
+                this[dimension+"Velocity"] = this[maxXVelotcityVarName];
+            }
+        }else{
+            this[dimension+"Velocity"] -= this.acceleration;
+            if(this[dimension+"Velocity"] < 0 - this[maxXVelotcityVarName]){
+                this[dimension+"Velocity"] = 0 - this[maxXVelotcityVarName];
+            }
+        }
+    }
+    slowToStanding(deltaTime){
+        let decelcarationIncrement = Window.config.physics.friction;
+        let deceleration = this.xVelocity > 0 ? -1 * decelcarationIncrement : decelcarationIncrement;
+        if(Math.abs(this.xVelocity) < Math.abs(deceleration)){
+            this.xVelocity = 0;
+            return
+        }
+        this.xVelocity += deceleration;
+        this.posX += this.xVelocity * deltaTime;
+        console.log(this.xVelocity, "let go");
+    }
 
 }

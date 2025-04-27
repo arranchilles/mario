@@ -6,19 +6,19 @@
             {
                 "posX": 241,
                 "posY": 0,
-                "width": 14,
-                "height": 15
+                "width": 13,
+                "height": 16
             },
             {
                 "posX": 272,
                 "posY": 0,
-                "width": 13,
+                "width": 12,
                 "height": 16
             },
             {
                 "posX": 300,
                 "posY": 0,
-                "width": 18,
+                "width": 16,
                 "height": 16
             }
         ]
